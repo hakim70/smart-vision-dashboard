@@ -1,0 +1,17 @@
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .main-content {
+    flex: 1;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .page-content {
+    padding: 2rem;
+  }
+  

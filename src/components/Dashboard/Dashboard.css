@@ -1,0 +1,42 @@
+.dashboard h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    color: #111827;
+  }
+  
+  .dashboard p {
+    margin-bottom: 2rem;
+    color: #6b7280;
+  }
+  
+  .stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    flex: 1;
+    min-width: 200px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: scale(1.02);
+  }
+  
+  .card h3 {
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+  }
+  
+  .card p {
+    font-size: 1.2rem;
+    color: #10b981;
+    font-weight: bold;
+  }
+  

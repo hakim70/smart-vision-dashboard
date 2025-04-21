@@ -1,0 +1,146 @@
+.navbar {
+    height: 4rem;
+    background-color: white;
+    border-bottom: 1px solid rgb(229, 231, 235);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+  }
+  
+  .navbar h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(31, 41, 55);
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 300px;
+    height: 2.5rem;
+  }
+  
+  
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(156, 163, 175);
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+    border: 1px solid rgb(229, 231, 235);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: all 0.3s;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: rgb(126, 34, 206);
+    box-shadow: 0 0 0 3px rgba(126, 34, 206, 0.1);
+  }
+  
+  .navbar-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .icon-button {
+    position: relative;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    border-radius: 0.375rem;
+    color: rgb(75, 85, 99);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .icon-button:hover {
+    background-color: rgb(243, 244, 246);
+    color: rgb(31, 41, 55);
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(239, 68, 68);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+    transform: translate(25%, -25%);
+  }
+  
+  .notification-container,
+  .settings-container {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 240px;
+    background-color: white;
+    border: 1px solid rgb(229, 231, 235);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 50;
+  }
+  
+  .dropdown-menu h3 {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgb(31, 41, 55);
+    border-bottom: 1px solid rgb(229, 231, 235);
+  }
+  
+  .dropdown-item {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: rgb(75, 85, 99);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .dropdown-item:hover {
+    background-color: rgb(243, 244, 246);
+    color: rgb(31, 41, 55);
+  }
+  
+  .logout-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgb(243, 244, 246);
+    border: none;
+    border-radius: 0.375rem;
+    color: rgb(75, 85, 99);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .logout-button:hover {
+    background-color: rgb(229, 231, 235);
+    color: rgb(31, 41, 55);
+  }
