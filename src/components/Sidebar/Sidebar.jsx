@@ -28,8 +28,8 @@ function Sidebar() {
         <NavLink to="/" icon={LayoutDashboard}>Dashboard</NavLink>
         <NavLink to="/supervisor" icon={Users}>Supervisor</NavLink>
         <NavLink to="/supervisorupdate" icon={Users}>SupervisorUpdate</NavLink>
-        <NavLink to="/sector" icon={Users}>Sector</NavLink>
-        <NavLink to="/agent" icon={Users}>Agent</NavLink>
+        {/* <NavLink to="/sector" icon={Users}>Sector</NavLink>
+        <NavLink to="/agent" icon={Users}>Agent</NavLink> */}
       </nav>
     </div>
   );
