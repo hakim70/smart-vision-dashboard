@@ -31,7 +31,7 @@ function Sidebar() {
 
         <NavLink to="/sector" icon={Users}>Sector</NavLink>
         <NavLink to="/sectors" icon={Users}>SectorList</NavLink>
-        <NavLink to="/update-sector" icon={Users}>SectorUpdate</NavLink>
+
         {/* <NavLink to="/agent" icon={Users}>Agent</NavLink> */}
       </nav>
     </div>
