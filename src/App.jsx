@@ -10,7 +10,9 @@ import SupervisorList from './pages/Supervisor/SupervisorList/SupervisorList';
 import Sector from './pages/Sector/Sector';
 import SectorList from './pages/Sector/SectorList/SectorList';
 import SectorUpdate from './pages/Sector/SectorUpdate/SectorUpdate';
+
 // import Agent from './pages/Agent/Agent';
+
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
           <Route path="/Sector" element={< Sector/>} />
           <Route path="/Sectors" element={< SectorList/>} />
           <Route path="/update-sector/:id" element={< SectorUpdate/>} />
+          
           {/* <Route path="/Agent" element={< Agent/>} /> */}
+
         </Routes>
       </AppLayout>
     </Router>
