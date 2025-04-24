@@ -7,7 +7,7 @@ function Logo() {
       style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-start', // Pour que le marginLeft fonctionne correctement
+        justifyContent: 'flex-start',
         height: '6rem',
         padding: '1rem 0',
       }}

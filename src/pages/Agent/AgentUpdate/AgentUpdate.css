@@ -1,5 +1,5 @@
 /* Container for the entire component */
-.agent-container {
+.agent-update-container {
     max-width: 64rem;
     margin: 0 auto;
     padding: 2rem;
@@ -152,9 +152,41 @@
     height: 1.125rem;
 }
 
+/* Loading */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.loading-container div {
+    font-size: 1.125rem;
+    color: #4f46e5;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-container div::before {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid #4f46e5;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* Responsive design */
 @media (max-width: 640px) {
-    .agent-container {
+    .agent-update-container {
         padding: 1rem;
     }
 

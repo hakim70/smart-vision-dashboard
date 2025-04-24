@@ -1,5 +1,5 @@
 /* Container */
-.sector-list-container {
+.agent-list-container {
     max-width: 64rem;
     margin: 0 auto;
     padding: 2rem;
@@ -23,8 +23,12 @@
     gap: 0.5rem;
 }
 
+.header .icon {
+    color: #4f46e5;
+}
+
 /* Add button */
-.header button {
+.add-button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -36,20 +40,26 @@
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.header button:hover {
+.add-button:hover {
     background-color: #4338ca;
+    transform: translateY(-1px);
 }
 
-.header button:focus {
+.add-button:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
 }
 
+.add-button svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
 /* Search bar */
-.sector-list-container input {
+.search-bar {
     width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid #d1d5db;
@@ -57,32 +67,34 @@
     font-size: 0.875rem;
     background-color: #ffffff;
     margin-bottom: 1.5rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.sector-list-container input:focus {
+.search-bar:focus {
     outline: none;
     border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-.sector-list-container input::placeholder {
+.search-bar::placeholder {
     color: #9ca3af;
 }
 
 /* Table */
-table {
+.agent-table {
     width: 100%;
     border-collapse: collapse;
     background-color: #ffffff;
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
 }
 
-table thead {
+.agent-table thead {
     background-color: #f3f4f6;
 }
 
-table th {
+.agent-table th {
     padding: 1rem;
     text-align: left;
     font-size: 0.875rem;
@@ -91,34 +103,28 @@ table th {
     text-transform: uppercase;
 }
 
-table tbody tr {
+.agent-table tbody tr {
     border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s;
 }
 
-table tbody tr:hover {
+.agent-table tbody tr:hover {
     background-color: #f9fafb;
 }
 
-table td {
+.agent-table td {
     padding: 1rem;
     font-size: 0.875rem;
     color: #1f2937;
 }
 
-table td svg {
-    width: 1rem;
-    height: 1rem;
-    vertical-align: middle;
-    margin-right: 0.25rem;
-}
-
 /* Actions */
-table td:last-child {
+.actions {
     display: flex;
     gap: 0.5rem;
 }
 
-table td:last-child button {
+.edit-btn, .delete-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,35 +133,77 @@ table td:last-child button {
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-table td:last-child button:first-child {
+.edit-btn {
     background-color: #e0e7ff;
     color: #4f46e5;
 }
 
-table td:last-child button:first-child:hover {
+.edit-btn:hover {
     background-color: #c7d2fe;
+    transform: translateY(-1px);
 }
 
-table td:last-child button:last-child {
+.delete-btn {
     background-color: #fee2e2;
     color: #dc2626;
 }
 
-table td:last-child button:last-child:hover {
+.delete-btn:hover {
     background-color: #fecaca;
+    transform: translateY(-1px);
 }
 
-table td:last-child button:focus {
+.edit-btn:focus, .delete-btn:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
+/* No data */
+.no-data {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+/* Loading */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.loading-container div {
+    font-size: 1.125rem;
+    color: #4f46e5;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-container div::before {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid #4f46e5;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* Responsive */
 @media (max-width: 640px) {
-    .sector-list-container {
+    .agent-list-container {
         padding: 1rem;
     }
 
@@ -163,27 +211,27 @@ table td:last-child button:focus {
         font-size: 1.5rem;
     }
 
-    .header button {
+    .add-button {
         padding: 0.5rem 1rem;
         font-size: 0.875rem;
     }
 
-    .sector-list-container input {
+    .search-bar {
         padding: 0.5rem;
         font-size: 0.75rem;
     }
 
-    table th, table td {
+    .agent-table th, .agent-table td {
         padding: 0.75rem;
         font-size: 0.75rem;
     }
 
-    table td:last-child {
+    .actions {
         flex-direction: column;
         gap: 0.25rem;
     }
 
-    table td:last-child button {
+    .edit-btn, .delete-btn {
         width: 1.5rem;
         height: 1.5rem;
     }

@@ -1,0 +1,298 @@
+/* Container for the entire component */
+.sector-form {
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9fafb;
+}
+
+/* Header */
+.sector-form h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.sector-form h2 svg {
+    color: #4f46e5;
+}
+
+/* Form container */
+.form-container {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Form group */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    background-color: #ffffff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Camera section */
+.camera-section {
+    margin-bottom: 1.25rem;
+}
+
+.camera-section label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+/* Camera input */
+.camera-input {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.camera-input input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    background-color: #ffffff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.camera-input input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.camera-input input::placeholder {
+    color: #9ca3af;
+}
+
+.camera-input button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.camera-input button:hover:not(:disabled) {
+    background-color: #c7d2fe;
+    transform: translateY(-1px);
+}
+
+.camera-input button:disabled {
+    background-color: #e5e7eb;
+    cursor: not-allowed;
+}
+
+.camera-input button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+.camera-input button svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+/* Camera list */
+.camera-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Camera item */
+.camera-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background-color: #f9fafb;
+    border-radius: 0.375rem;
+    border: 1px solid #e5e7eb;
+    transition: background-color 0.2s;
+}
+
+.camera-item:hover {
+    background-color: #f3f4f6;
+}
+
+.camera-item span {
+    font-size: 0.875rem;
+    color: #1f2937;
+}
+
+/* Remove camera button */
+.camera-item button {
+    border: none;
+    background: none;
+    color: #dc2626;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.camera-item button:hover {
+    color: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.camera-item button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
+}
+
+/* Form actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.form-actions button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-actions button:first-child {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.form-actions button:first-child:hover {
+    background-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+.form-actions button:first-child:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.form-actions button:last-child {
+    background-color: #4f46e5;
+    color: #ffffff;
+}
+
+.form-actions button:last-child:hover:not(:disabled) {
+    background-color: #4338ca;
+    transform: translateY(-1px);
+}
+
+.form-actions button:last-child:disabled {
+    background-color: #bfdbfe;
+    cursor: not-allowed;
+}
+
+.form-actions button:last-child:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+.form-actions button svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+    .sector-form {
+        padding: 1rem;
+    }
+
+    .sector-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-container {
+        padding: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .camera-input input {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .camera-input {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .camera-input button,
+    .form-actions button {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .camera-item {
+        padding: 0.5rem;
+    }
+
+    .camera-item span,
+    .camera-item button {
+        font-size: 0.75rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

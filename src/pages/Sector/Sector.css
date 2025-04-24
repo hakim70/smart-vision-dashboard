@@ -1,137 +1,312 @@
+/* Container for the entire component */
+.sector-container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9fafb;
+}
+
+/* Header with title and back button */
+.sector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sector-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sector-header .icon {
+  color: #4f46e5;
+}
+
+/* Back button */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #e5e7eb;
+  color: #374151;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  background-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+.back-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+.back-button .button-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* Form container */
 .form-container {
-    background-color: #FFFFFF;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* Form grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Camera input */
+.camera-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Add camera button */
+.add-camera-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #e0e7ff;
+  color: #4f46e5;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-camera-button:hover:not(:disabled) {
+  background-color: #c7d2fe;
+  transform: translateY(-1px);
+}
+
+.add-camera-button:disabled {
+  background-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+.add-camera-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+/* Camera list */
+.camera-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.camera-list h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+/* Camera item */
+.camera-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.camera-item:hover {
+  background-color: #f3f4f6;
+}
+
+/* Camera info */
+.camera-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1f2937;
+  font-size: 0.875rem;
+}
+
+.camera-info svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Remove camera button */
+.remove-camera-button {
+  border: none;
+  background: none;
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.remove-camera-button:hover {
+  color: #b91c1c;
+  transform: translateY(-1px);
+}
+
+.remove-camera-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
+}
+
+/* Form actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Submit button */
+.submit-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #4338ca;
+  transform: translateY(-1px);
+}
+
+.submit-button:disabled {
+  background-color: #bfdbfe;
+  cursor: not-allowed;
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+.submit-button .button-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .sector-container {
+      padding: 1rem;
   }
-  
-  .form-icon {
-    width: 4rem;
-    height: 4rem;
-    background-color: #BFD7EA;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: #003366;
+
+  .sector-header h2 {
+      font-size: 1.5rem;
   }
-  
-  .form-container h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
-    color: #003366;
-    margin-bottom: 0.25rem;
+
+  .back-button,
+  .add-camera-button,
+  .submit-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
   }
-  
-  .form-container p {
-    text-align: center;
-    color: #6B7280;
-    margin-bottom: 1.5rem;
+
+  .form-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
   }
-  
-  .form-group {
-    margin-bottom: 1rem;
+
+  .form-container {
+      padding: 1rem;
   }
-  
-  .form-group label {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #003366;
-    margin-bottom: 0.25rem;
-  }
-  
+
   .form-group input,
   .form-group textarea {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #D1D5DB;
-    border-radius: 0.375rem;
-    font-size: 0.875rem;
-    transition: all 0.3s;
+      padding: 0.5rem;
+      font-size: 0.75rem;
   }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #003366;
-    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
-  }
-  
+
   .camera-input {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
   }
-  
-  .add-camera-button {
-    padding: 0.5rem;
-    background-color: #BFD7EA;
-    color: #003366;
-    border: none;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .add-camera-button:hover {
-    background-color: #A3C8E0;
-  }
-  
-  .camera-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
+
   .camera-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem;
-    background-color: #F9FAFB;
-    border-radius: 0.375rem;
+      padding: 0.5rem;
   }
-  
-  .camera-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #4B5563;
-  }
-  
+
+  .camera-info,
   .remove-camera-button {
-    border: none;
-    background: none;
-    color: #EF4444;
-    font-size: 0.875rem;
-    cursor: pointer;
+      font-size: 0.75rem;
   }
-  
-  .remove-camera-button:hover {
-    color: #DC2626;
+
+  .camera-list h4 {
+      font-size: 0.875rem;
   }
-  
-  .submit-button {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: #003366;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 0.375rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #BFD7EA;
-    color: #003366;
-  }
-  
-  .submit-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.3);
-  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users } from 'lucide-react';
+import { LayoutDashboard, Users ,Map ,Cctv } from 'lucide-react';
 import './Sidebar.css';
 import Logo from '../Logo';
 
@@ -26,13 +26,15 @@ function Sidebar() {
 
       <nav className="nav-menu">
         <NavLink to="/" icon={LayoutDashboard}>Dashboard</NavLink>
+        
         <NavLink to="/supervisor" icon={Users}>Supervisor</NavLink>
-        <NavLink to="/supervisorupdate" icon={Users}>SupervisorUpdate</NavLink>
+       
 
-        <NavLink to="/sector" icon={Users}>Sector</NavLink>
-        <NavLink to="/sectors" icon={Users}>SectorList</NavLink>
+        <NavLink to="/sector" icon={Map}>Sector</NavLink>
+        <NavLink to="/sectors" icon={Map}>SectorList</NavLink>
 
-        {/* <NavLink to="/agent" icon={Users}>Agent</NavLink> */}
+        <NavLink to="/agent" icon={Cctv}>Agent</NavLink>
+        <NavLink to="/agents" icon={Cctv}>AgentList</NavLink>
       </nav>
     </div>
   );

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserPlus, Save, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import './Agent.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import './AgentUpdate.css';
 
-function Agent() {
+function AgentUpdate() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,12 +15,41 @@ function Agent() {
     sectorId: ''
   });
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
 
-  // Mock sectors data (same as AddSector)
+  // Mock sectors data (same as Agent.jsx)
   const sectors = [
     { id: '1', name: 'North Wing' },
     { id: '2', name: 'South Wing' }
   ];
+
+  useEffect(() => {
+    const fetchAgent = () => {
+      try {
+        const agents = JSON.parse(localStorage.getItem('agents')) || [];
+        const agent = agents.find(agent => agent.id === parseInt(id));
+        if (!agent) {
+          throw new Error('Agent not found');
+        }
+        setFormData({
+          name: agent.name,
+          email: agent.email,
+          phoneNumber: agent.phoneNumber,
+          cin: agent.cin,
+          password: agent.password, // Note: In production, handle passwords securely
+          sectorId: agent.sectorId
+        });
+      } catch (error) {
+        console.error('Error fetching agent:', error);
+        alert('Failed to load agent data');
+        navigate('/agents');
+      } finally {
+        setInitialLoading(false);
+      }
+    };
+
+    fetchAgent();
+  }, [id, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,35 +59,28 @@ function Agent() {
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Create new agent object
-      const newAgent = {
-        id: Date.now(), // Unique ID using timestamp
-        name: formData.name,
-        email: formData.email,
-        phoneNumber: formData.phoneNumber,
-        cin: formData.cin,
-        password: formData.password, // Note: In production, hash passwords
-        sectorId: formData.sectorId
-      };
-
       // Get existing agents from localStorage
       const existingAgents = JSON.parse(localStorage.getItem('agents')) || [];
 
-      // Check for duplicate email
-      if (existingAgents.some(agent => agent.email === formData.email)) {
+      // Check for duplicate email (excluding current agent)
+      if (existingAgents.some(agent => agent.email === formData.email && agent.id !== parseInt(id))) {
         throw new Error('An agent with this email already exists');
       }
 
-      // Add new agent
-      const updatedAgents = [...existingAgents, newAgent];
+      // Update agent
+      const updatedAgents = existingAgents.map(agent =>
+        agent.id === parseInt(id)
+          ? { ...agent, ...formData, updatedAt: new Date().toISOString() }
+          : agent
+      );
       localStorage.setItem('agents', JSON.stringify(updatedAgents));
 
-      console.log('Agent created:', newAgent);
-      alert('Agent created successfully!');
-      navigate('/agents'); // Assumes a list route exists
+      console.log('Agent updated:', formData);
+      alert('Agent updated successfully!');
+      navigate('/agents');
     } catch (error) {
-      console.error('Error creating agent:', error);
-      alert(error.message || 'Failed to create agent');
+      console.error('Error updating agent:', error);
+      alert(error.message || 'Failed to update agent');
     } finally {
       setLoading(false);
     }
@@ -68,12 +91,20 @@ function Agent() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  if (initialLoading) {
+    return (
+      <div className="loading-container">
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="agent-container">
+    <div className="agent-update-container">
       <div className="agent-header">
         <h2>
           <UserPlus size={24} className="icon" />
-          Add New Agent
+          Update Agent
         </h2>
         <button 
           onClick={() => navigate('/agents')} 
@@ -190,7 +221,7 @@ function Agent() {
               ) : (
                 <>
                   <Save size={18} className="button-icon" />
-                  Create Agent
+                  Update Agent
                 </>
               )}
             </button>
@@ -201,4 +232,4 @@ function Agent() {
   );
 }
 
-export default Agent;
+export default AgentUpdate;
