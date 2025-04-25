@@ -35,6 +35,8 @@ function Sidebar() {
 
         <NavLink to="/agent" icon={Cctv}>Agent</NavLink>
         <NavLink to="/agents" icon={Cctv}>AgentList</NavLink>
+
+        <NavLink to="/camera" icon={Cctv}>Camera</NavLink>
       </nav>
     </div>
   );

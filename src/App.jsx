@@ -17,6 +17,13 @@ import AgentList from './pages/Agent/AgentList/AgentList';
 import AgentUpdate from './pages/Agent/AgentUpdate/AgentUpdate';
 
 
+import Camera from './pages/Camera/camera';
+import CameraList from './pages/Camera/CameraList/CameraList';
+import CameraUpdate from './pages/Camera/CameraUpdate/CameraUpdate'
+
+
+
+
 
 // haseb role fuction guard 
 
@@ -38,6 +45,11 @@ function App() {
           <Route path="/Agent" element={< Agent/>} />
           <Route path="/Agents" element={< AgentList/>} />
           <Route path="/update-agent/:id" element={< AgentUpdate/>} />
+
+          <Route path="/Camera" element={< Camera/>} />
+          <Route path="/Cameras" element={< CameraList/>} />
+          <Route path="/update-camera/:id" element={< CameraUpdate/>} />
+
 
 
         </Routes>

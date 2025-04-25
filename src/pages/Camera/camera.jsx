@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Camera, Save, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import './Camera.css';
 
 function AddCamera() {
@@ -30,7 +31,7 @@ function AddCamera() {
       }
 
       const newCamera = {
-        id: Date.now().toString(),
+        id: uuidv4(), // Generate a unique UUID
         name: formData.name,
         ipAddress: formData.ipAddress
       };
@@ -127,6 +128,3 @@ function AddCamera() {
 }
 
 export default AddCamera;
-
-
-
