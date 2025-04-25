@@ -21,6 +21,8 @@ import Camera from './pages/Camera/camera';
 import CameraList from './pages/Camera/CameraList/CameraList';
 import CameraUpdate from './pages/Camera/CameraUpdate/CameraUpdate'
 
+import Login from './pages/login/Login';
+
 
 
 
@@ -35,8 +37,8 @@ function App() {
           <Route path="/" element={<Dashboard />} />
 
           <Route path="/supervisor" element={<Supervisor />} />
-          <Route path="/supervisorupdate" element={<SupervisorUpdate />} />
           <Route path="/supervisors" element={<SupervisorList />} />
+          <Route path="/supervisorupdate" element={<SupervisorUpdate />} />
 
           <Route path="/Sector" element={< Sector/>} />
           <Route path="/Sectors" element={< SectorList/>} />
@@ -49,6 +51,8 @@ function App() {
           <Route path="/Camera" element={< Camera/>} />
           <Route path="/Cameras" element={< CameraList/>} />
           <Route path="/update-camera/:id" element={< CameraUpdate/>} />
+
+          <Route path="/login" element={< Login/>} />
 
 
 

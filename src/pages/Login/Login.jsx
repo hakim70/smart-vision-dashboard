@@ -1,105 +1,169 @@
-import React, { useState } from 'react';
-import '..Login/l';
-import BtLogo from '../assets/BT.png';
-// import { login } from '../../service/auth_service/AuthService.js';
+import { useState, useEffect } from 'react';
+import './Login.css';
 
-const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(true);
-  const [error, setError] = useState(null);
+function Login() {
+  const [credentials, setCredentials] = useState({
+    username: '',
+    password: ''
+  });
+  const [error, setError] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState('');
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  // Liste des utilisateurs simulée
+  // Dans une application réelle, ces informations viendraient du backend
+  const users = [
+    { username: 'admin', password: 'admin123', role: 'admin' },
+    { username: 'supervisor', password: 'super123', role: 'supervisor' },
+    { username: 'agent', password: 'agent123', role: 'agent' }
+  ];
+
+  useEffect(() => {
+    // Vérifier si l'utilisateur est déjà connecté au chargement
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      const user = JSON.parse(userInfo);
+      setIsLoggedIn(true);
+      setUserRole(user.role);
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      setError(null); // Clear previous errors
-      const loginResponse = await login(email, password);
-
-      console.log('Login successful:', loginResponse);
-
-      // Store the access token in localStorage
-      localStorage.setItem('accessToken', loginResponse.access_token);
-
-      // Redirect to the dashboard
-      window.location.href = '/management'
-    } catch (err) {
-      // Display error message to the user
-      setError(err.message);
+    setError('');
+    
+    // Vérification simple des champs
+    if (!credentials.username || !credentials.password) {
+      setError('Veuillez remplir tous les champs');
+      return;
+    }
+    
+    // Vérifier les identifiants avec la liste des utilisateurs
+    const user = users.find(
+      u => u.username === credentials.username && u.password === credentials.password
+    );
+    
+    if (user) {
+      // Stocker les informations d'utilisateur dans localStorage
+      const userInfo = {
+        username: user.username,
+        role: user.role,
+        isAuthenticated: true
+      };
+      
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      setIsLoggedIn(true);
+      setUserRole(user.role);
+    } else {
+      setError('Nom d\'utilisateur ou mot de passe incorrect');
     }
   };
 
-  return (
+  const handleLogout = () => {
+    localStorage.removeItem('userInfo');
+    setIsLoggedIn(false);
+    setUserRole('');
+    setCredentials({ username: '', password: '' });
+  };
+
+  // Fonction pour obtenir un message selon le rôle
+  const getRoleSpecificContent = (role) => {
+    switch (role) {
+      case 'admin':
+        return {
+          title: 'Interface Administrateur',
+          message: 'Vous avez accès à toutes les fonctionnalités du système.',
+          color: '#4a90e2'
+        };
+      case 'supervisor':
+        return {
+          title: 'Interface Superviseur',
+          message: 'Vous pouvez gérer les agents et surveiller les opérations.',
+          color: '#27ae60'
+        };
+      case 'agent':
+        return {
+          title: 'Interface Agent',
+          message: 'Vous pouvez accéder aux fonctionnalités de base du système.',
+          color: '#f39c12'
+        };
+      default:
+        return {
+          title: 'Bienvenue',
+          message: 'Vous êtes connecté.',
+          color: '#95a5a6'
+        };
+    }
+  };
+
+  if (isLoggedIn) {
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+    const roleContent = getRoleSpecificContent(user.role);
+    
+    return (
       <div className="login-container">
-        <div className="logo">
-          <img src={BtLogo} alt="logo" />
+        <div className="login-card" style={{ borderTop: `4px solid ${roleContent.color}` }}>
+          <h2>{roleContent.title}</h2>
+          <div className="role-badge" style={{ backgroundColor: roleContent.color }}>
+            {user.role.toUpperCase()}
+          </div>
+          <p className="welcome-message">Bienvenue, <strong>{user.username}</strong>!</p>
+          <p>{roleContent.message}</p>
+          <div className="action-buttons">
+            <button 
+              className="btn-dashboard" 
+              onClick={() => alert(`Redirection vers le tableau de bord ${user.role}`)}
+            >
+              Accéder au tableau de bord
+            </button>
+            <button className="btn-logout" onClick={handleLogout}>Se déconnecter</button>
+          </div>
         </div>
+      </div>
+    );
+  }
 
-        <h1>Hi, Welcome Back</h1>
-        <p className="subtitle">Enter your credentials to continue</p>
-
+  return (
+    <div className="login-container">
+      <div className="login-card">
+        <h2>Connexion</h2>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
-          {error && <p className="error-message">{error}</p>}
-
-          <div className="input-group">
-            <label htmlFor="email">Email Address / Username</label>
+          <div className="form-group">
+            <label htmlFor="username">Nom d'utilisateur</label>
             <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+              type="text"
+              id="username"
+              name="username"
+              value={credentials.username}
+              onChange={handleChange}
+              placeholder="Entrez votre nom d'utilisateur"
             />
           </div>
-
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <div className="password-field">
-              <input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-              />
-              <span className="toggle-password" onClick={togglePasswordVisibility}>
-              {showPassword ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-              ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                    <line x1="1" y1="1" x2="23" y2="23"></line>
-                  </svg>
-              )}
-            </span>
-            </div>
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+              placeholder="Entrez votre mot de passe"
+            />
           </div>
-
-          <div className="remember-forgot">
-            <div className="checkbox-container">
-              <input
-                  type="checkbox"
-                  id="remember"
-                  checked={rememberMe}
-                  onChange={() => setRememberMe(!rememberMe)}
-              />
-              <label htmlFor="remember">Keep me logged in</label>
-            </div>
-            <a href="#" className="forgot-link">Forgot Password?</a>
-          </div>
-
-          <button type="submit" className="signin-button">Sign In</button>
+          <button type="submit" className="btn-login">Se connecter</button>
         </form>
       </div>
+    </div>
   );
-};
+}
 
-export default LoginPage;
+export default Login;
