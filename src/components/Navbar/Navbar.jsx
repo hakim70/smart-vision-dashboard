@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Bell, Settings, LogOut } from 'lucide-react';
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [notifications] = useState([
@@ -11,8 +12,12 @@ function Navbar() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
+  const navigate = useNavigate(); // ➔ tu dois ajouter ça
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
   const handleLogout = () => {
-    console.log('Logging out...');
+    localStorage.removeItem('userInfo');
+    navigate('/'); // ➔ rediriger directement, pas besoin de setIsLoggedIn etc ici
   };
 
   return (

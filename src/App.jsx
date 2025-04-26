@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppLayout from './components/AppLayout/AppLayout';
@@ -16,48 +15,55 @@ import Agent from './pages/Agent/Agent';
 import AgentList from './pages/Agent/AgentList/AgentList';
 import AgentUpdate from './pages/Agent/AgentUpdate/AgentUpdate';
 
-
 import Camera from './pages/Camera/camera';
 import CameraList from './pages/Camera/CameraList/CameraList';
-import CameraUpdate from './pages/Camera/CameraUpdate/CameraUpdate'
+import CameraUpdate from './pages/Camera/CameraUpdate/CameraUpdate';
 
-import Login from './pages/login/Login';
+import Login from './pages/Login/Login';
 
-
-
-
-
-// haseb role fuction guard 
+import AdminRoute from './pages/Login/Route/AdminRoute'; 
+import SupervisorRoute from './pages/Login/Route/SupervisorRoute'
 
 function App() {
   return (
     <Router>
-      <AppLayout>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
+      <Routes>
 
-          <Route path="/supervisor" element={<Supervisor />} />
-          <Route path="/supervisors" element={<SupervisorList />} />
-          <Route path="/supervisorupdate" element={<SupervisorUpdate />} />
+        {/* Page Login sans AppLayout */}
+        <Route path="/" element={<Login />} />
 
-          <Route path="/Sector" element={< Sector/>} />
-          <Route path="/Sectors" element={< SectorList/>} />
-          <Route path="/update-sector/:id" element={< SectorUpdate/>} />
-          
-          <Route path="/Agent" element={< Agent/>} />
-          <Route path="/Agents" element={< AgentList/>} />
-          <Route path="/update-agent/:id" element={< AgentUpdate/>} />
+        {/* Pages protégées avec AppLayout */}
+        <Route element={<AppLayout />}>
 
-          <Route path="/Camera" element={< Camera/>} />
-          <Route path="/Cameras" element={< CameraList/>} />
-          <Route path="/update-camera/:id" element={< CameraUpdate/>} />
+         
+          {/* Admin only routes */}
+          <Route element={<AdminRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
 
-          <Route path="/login" element={< Login/>} />
+            <Route path="/supervisor" element={<Supervisor />} />
+            <Route path="/supervisors" element={<SupervisorList />} />
+            <Route path="/supervisorupdate" element={<SupervisorUpdate />} />
+          </Route>
 
+        <Route element={<SupervisorRoute />}>
 
+          <Route path="/Sector" element={<Sector />} />
+          <Route path="/Sectors" element={<SectorList />} />
+          <Route path="/update-sector/:id" element={<SectorUpdate />} />
 
-        </Routes>
-      </AppLayout>
+          <Route path="/Agent" element={<Agent />} />
+          <Route path="/Agents" element={<AgentList />} />
+          <Route path="/update-agent/:id" element={<AgentUpdate />} />
+
+          <Route path="/Camera" element={<Camera />} />
+          <Route path="/Cameras" element={<CameraList />} />
+          <Route path="/update-camera/:id" element={<CameraUpdate />} />
+
+        </Route>
+
+        </Route>
+
+      </Routes>
     </Router>
   );
 }
